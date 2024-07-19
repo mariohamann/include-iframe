@@ -1,13 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <script type="module" src="/include-iframe.js"></script>
+    <title>&lt;include-iframe&gt;</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <main>
+      <h1><code>&lt;include-iframe&gt;</code></h1>
+      <ul>
+        <li><a href>GitHub</a></li>
+        <li><a href>NPM</a></li>
+      </ul>
+      <p>The <code>&lt;include-iframe&gt;</code> custom element is a
+        simple way to load content from external HTML files via slotted
+        <code>&lt;iframe&gt;</code> elements. The following examples show how
+        it works. You can even try this page with JavaScript disabled.
+      </p>
+      <include-iframe>
+        <iframe
+          src="/body.html"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/full.html"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/svg/description.html"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/svg/demo.svg"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/nesting/parent.html"></iframe>
+      </include-iframe>
+      <style>
+        @media (scripting: enabled) {
+          include-iframe iframe {
+            display: none;
+          }
+        }
+      </style>
+    </main>
   </body>
 </html>
