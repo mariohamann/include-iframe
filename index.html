@@ -18,7 +18,8 @@
       <p>The <code>&lt;include-iframe&gt;</code> custom element is a
         simple way to load content from external HTML files via slotted
         <code>&lt;iframe&gt;</code> elements. The following examples show how
-        it works. You can even try this page with JavaScript disabled.
+        it works. You can even try this page with JavaScript disabled. Check out
+        GitHub for further documentation.
       </p>
       <include-iframe>
         <iframe
@@ -27,6 +28,19 @@
       <include-iframe>
         <iframe
           src="/full.html"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/loading/description.html"></iframe>
+      </include-iframe>
+      <include-iframe>
+        <iframe
+          src="/loading/demo.html" loading="lazy"></iframe>
+        <div slot="loading" hidden>
+          <div class="skeleton" style="width:90%;"></div>
+          <div class="skeleton" style="width:55%;"></div>
+          <div class="skeleton" style="width:80%;"></div>
+        </div>
       </include-iframe>
       <include-iframe>
         <iframe
@@ -43,7 +57,13 @@
       <style>
         @media (scripting: enabled) {
           include-iframe iframe {
-            display: none;
+            clip: rect(0 0 0 0); 
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap; 
+            width: 1px;
           }
         }
       </style>

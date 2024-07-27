@@ -18,12 +18,10 @@ a {
 	text-decoration: underline;
 }
 a:hover {
-	color: var(--activity-graph-text-color);
 	text-decoration: none;
 }
 
 body {
-	color: var(--activity-graph-text-color);
 	padding: 24px;
 }
 
@@ -41,4 +39,26 @@ main {
 h2 {
 	margin-top: 1.5em;
 	margin-bottom: 0em;
+}
+
+.skeleton {
+	display: inline-block;
+	height: 1em;
+	position: relative;
+	overflow: hidden;
+	background-color: #dddbdd;
+	animation: pulse 2s ease-in-out 0.5s infinite;
+	border-radius: 99999px;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	100% {
+		opacity: 1;
+	}
 }
