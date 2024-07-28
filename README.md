@@ -115,4 +115,5 @@ Use the `loading` slot to display a custom loading state while the iframe conten
 
 -   [Mastodon post](https://front-end.social/@SaraSoueidan/112769147677219641) by [Sara Soueidan](https://front-end.social/@SaraSoueidan)
 -   [HTML Includes That Work Today](https://www.filamentgroup.com/lab/html-includes/#another-demo%3A-including-another-html-file) by [Scott Jehl](https://mstdn.social/@scottjehl)
+-   [Iframe inlining trick as a Web Component](https://codepen.io/andybelldesign/project/full/DyVyPG) by [Andy Bell](https://mastodon.social/@andy@bell.bz)
 -   [The use-html custom element](https://www.mayank.co/notes/use-html) by [Mayank](https://front-end.social/@mayank)
