@@ -10,6 +10,7 @@
   </head>
   <body>
     <main>
+      <!-- intro -->
       <h1><code>&lt;include-iframe&gt;</code></h1>
       <ul>
         <li><a href>GitHub</a></li>
@@ -21,14 +22,20 @@
         it works. You can even try this page with JavaScript disabled. Check out
         GitHub for further documentation.
       </p>
+      <!-- /intro -->
+      <!-- body -->
       <include-iframe>
         <iframe
           src="/body.html"></iframe>
       </include-iframe>
+      <!-- /body -->
+      <!-- full -->
       <include-iframe>
         <iframe
           src="/full.html"></iframe>
       </include-iframe>
+      <!-- /full -->
+      <!-- loading -->
       <include-iframe>
         <iframe
           src="/loading/description.html"></iframe>
@@ -42,6 +49,8 @@
           <div class="skeleton" style="width:80%;"></div>
         </div>
       </include-iframe>
+      <!-- /loading -->
+      <!-- svg -->
       <include-iframe>
         <iframe
           src="/svg/description.html"></iframe>
@@ -50,10 +59,23 @@
         <iframe
           src="/svg/demo.svg"></iframe>
       </include-iframe>
+      <!-- /svg -->
+      <!-- query -->
+      <include-iframe>
+        <iframe
+          src="/query/description.html"></iframe>
+      </include-iframe>
+      <include-iframe query-body="body > #include" query-head="style">
+        <iframe
+          src="/query/demo.html"></iframe>
+      </include-iframe>
+      <!-- /query -->
+      <!-- nesting -->
       <include-iframe>
         <iframe
           src="/nesting/parent.html"></iframe>
       </include-iframe>
+      <!-- /nesting -->
       <style>
         @media (scripting: enabled) {
           include-iframe iframe {

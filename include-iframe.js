@@ -2,21 +2,20 @@ class IncludeIframe extends HTMLElement {
   constructor() {
     super();
 
-    const shadow = this.attachShadow({ mode: 'open' });
-    const template = document.createElement('template');
+    const shadow = this.attachShadow({ mode: "open" });
+    const template = document.createElement("template");
     template.innerHTML = `<slot name="loading"></slot><slot></slot>`;
     shadow.appendChild(template.content.cloneNode(true));
-    this.iframe = this.querySelector('iframe');
+    this.iframe = this.querySelector("iframe");
     this.loadingSlot = shadow.querySelector('slot[name="loading"]');
   }
 
   get contentChildren() {
-    const contentDocument = this.iframe.contentDocument;
-    if (contentDocument?.readyState !== 'complete') {
-      return null
+    const contentDocument = this.iframe?.contentDocument;
+    if (contentDocument?.readyState !== "complete") {
+      return null;
     }
-    const content = this.iframe.contentDocument.body
-      || this.iframe.contentDocument // SVGs;
+    const content = contentDocument.body || contentDocument; // SVGs
     if (content?.children.length === 0) {
       return null;
     }
@@ -29,7 +28,7 @@ class IncludeIframe extends HTMLElement {
         this.replaceWithContent();
       } else {
         this.showLoading();
-        this.iframe.addEventListener('load', () => {
+        this.iframe.addEventListener("load", () => {
           this.replaceWithContent();
         });
       }
@@ -40,20 +39,45 @@ class IncludeIframe extends HTMLElement {
     if (this.loadingSlot) {
       const loadingElement = this.loadingSlot.assignedNodes()[0];
       if (loadingElement) {
-        loadingElement.removeAttribute('hidden');
+        loadingElement.removeAttribute("hidden");
       }
     }
   }
 
   replaceWithContent() {
-    if (this.contentChildren) {
-      const children = [...this.contentChildren];
-      children.forEach(child => this.before(child));
+    const contentDocument = this.iframe.contentDocument;
+
+    if (!contentDocument) {
+      console.error("Unable to access iframe content document");
+      return;
+    }
+
+    // Get query selectors from attributes
+    const headQuery = this.getAttribute("query-head") || "";
+    const bodyQuery = this.getAttribute("query-body") || "body > *";
+
+    // Select and append head elements
+    if (headQuery) {
+      const headElements =
+        contentDocument.head.querySelectorAll(headQuery);
+      headElements.forEach((element) => {
+        document.head.appendChild(element.cloneNode(true));
+      });
+    }
+
+    const content = contentDocument.body
+      ? contentDocument.body.querySelectorAll(bodyQuery) // Default
+      : [...contentDocument.children]; // SVGs
+
+    if (content.length > 0) {
+      content.forEach((child) => this.before(child.cloneNode(true)));
       this.remove();
     } else {
-      console.error('Iframe content is empty or undefined');
-    };
+      console.error(
+        "No matching body elements found or iframe content is empty"
+      );
+    }
   }
 }
 
-customElements.define('include-iframe', IncludeIframe);
+customElements.define("include-iframe", IncludeIframe);

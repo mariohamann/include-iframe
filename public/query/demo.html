@@ -1,0 +1,19 @@
+<head>
+  <style>
+    #include {
+      border-left: 4px solid #333;
+      padding-left: 1em;
+    }
+  </style>
+</head>
+<body>
+  <p id="avoid">
+    This paragraph will not be included by the query.
+  </p>
+  <p id="include">
+    This paragraph was part of <a href="/query/demo.html">query/demo.html</a>
+    and was included via <code>body-query="body > #include"</code>, while
+    another one was ignored. In addition its style was included via
+    <code>head-query="style"</code>.
+  </p>
+</body>

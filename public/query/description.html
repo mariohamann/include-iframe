@@ -1,0 +1,16 @@
+<h2><code>query-head</code> and <code>query-body</code> attribute</h2>
+<p>Use the <code>query-head</code> and <code>query-body</code> attributes to
+  extract specific elements from
+  <code>&lt;head&gt;</code>/<code>&lt;body&gt;</code> from the
+  <code>iframe</code>. These are the defaults:
+</p>
+<ul>
+  <li><code>query-head</code>: <code>""</code> (nothing is extracted)</li>
+  <li><code>query-body</code>: <code>"body > *" (everything is
+      extracted)</code></li>
+</ul>
+<p>
+  Elements from <code>head</code> are always moved to the <code>head</code> of
+  the parent document, while elements from <code>body</code> are extracted at
+  the place of the component.
+</p>
