@@ -11,7 +11,7 @@ class IncludeIframe extends HTMLElement {
   }
 
   get contentChildren() {
-    const contentDocument = this.iframe.contentDocument;
+    const contentDocument = this.iframe?.contentDocument;
     if (contentDocument?.readyState !== "complete") {
       return null;
     }
@@ -65,12 +65,12 @@ class IncludeIframe extends HTMLElement {
       });
     }
 
-    // Select and append body elements
-    const content = contentDocument.body || contentDocument;
-    const bodyElements = content.querySelectorAll(bodyQuery);
+    const content = contentDocument.body
+      ? contentDocument.body.querySelectorAll(bodyQuery) // Default
+      : [...contentDocument.children]; // SVGs
 
-    if (bodyElements.length > 0) {
-      bodyElements.forEach((child) => this.before(child.cloneNode(true)));
+    if (content.length > 0) {
+      content.forEach((child) => this.before(child.cloneNode(true)));
       this.remove();
     } else {
       console.error(
@@ -81,4 +81,3 @@ class IncludeIframe extends HTMLElement {
 }
 
 customElements.define("include-iframe", IncludeIframe);
-customElements.define("server-island", IncludeIframe);
