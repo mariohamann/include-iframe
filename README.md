@@ -1,6 +1,6 @@
-# include-iframe / server-island
+# include-iframe
 
-- [include-iframe / server-island](#include-iframe--server-island)
+- [include-iframe](#include-iframe)
   - [Main Features](#main-features)
   - [Installation](#installation)
     - [CDN](#cdn)
@@ -12,7 +12,7 @@
   - [Limitations](#limitations)
   - [Inspiration](#inspiration)
 
-The `<include-iframe>` custom element is a simple way to load content from external HTML files via slotted `<iframe>` elements. It supports showing a loading state while the iframe content is being loaded. Besides being a way for "Client Side Includes", this can be used as a primitive way to offload performance heavy or dynamic content, as e. g. [Astro](https://astro.build/) does it with [Server Islands](https://astro.build/blog/future-of-astro-server-islands/). (If you want you can even use it with the tag `<server-island>` as well.)
+The `<include-iframe>` custom element is a simple way to load content from external HTML files via slotted `<iframe>` elements. It supports showing a loading state while the iframe content is being loaded. Besides being a way for "Client Side Includes", this can be used as a primitive way to offload performance heavy or dynamic content, as e. g. [Astro](https://astro.build/) does it with [Server Islands](https://astro.build/blog/future-of-astro-server-islands/).
 
 -   [GitHub](https://github.com/mariohamann/include-iframe)
 -   [NPM](https://www.npmjs.com/package/@mariohamann/include-iframe)
