@@ -1,15 +1,16 @@
 # include-iframe / server-island
 
--   [include-iframe / server-island](#include-iframe--server-island)
-    -   [Main Features](#main-features)
-    -   [Installation](#installation)
-        -   [CDN](#cdn)
-        -   [NPM](#npm)
-    -   [Usage](#usage)
-        -   [Basic Usage](#basic-usage)
-        -   [Custom Loading State](#custom-loading-state)
-    -   [Limitations](#limitations)
-    -   [Inspiration](#inspiration)
+- [include-iframe / server-island](#include-iframe--server-island)
+  - [Main Features](#main-features)
+  - [Installation](#installation)
+    - [CDN](#cdn)
+    - [NPM](#npm)
+  - [Usage](#usage)
+    - [Basic Usage](#basic-usage)
+    - [Attributes: `query-head` and `query-body`](#attributes-query-head-and-query-body)
+    - [Slot: `loading`](#slot-loading)
+  - [Limitations](#limitations)
+  - [Inspiration](#inspiration)
 
 The `<include-iframe>` custom element is a simple way to load content from external HTML files via slotted `<iframe>` elements. It supports showing a loading state while the iframe content is being loaded. Besides being a way for "Client Side Includes", this can be used as a primitive way to offload performance heavy or dynamic content, as e. g. [Astro](https://astro.build/) does it with [Server Islands](https://astro.build/blog/future-of-astro-server-islands/). (If you want you can even use it with the tag `<server-island>` as well.)
 
@@ -71,7 +72,7 @@ Use the default slot to include an iframe with the content you want to load. The
 </include-iframe>
 ```
 
-Using the native iframe element in the LightDOM allows the browser to start loading the content immediately, even before JavaScript is executed. This ensures optimal performance and in addition enables features like [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) by setting `loading="lazy"` on the iframe.
+Using the native iframe element in the LightDOM allows the browser to start loading the content immediately, even before JavaScript is executed. This ensures optimal performance and in addition enables features like [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) by setting `loading="lazy"` on the iframe. And even when JavaScript is disabled, the content of your iframe will be shown.
 
 > [!TIP]
 > For improved Progressive Enhancement, include the following CSS, which will hide the iframe when JavaScript is enabled.
@@ -90,7 +91,39 @@ Using the native iframe element in the LightDOM allows the browser to start load
 }
 ```
 
-### Custom Loading State
+### Attributes: `query-head` and `query-body`
+
+**Defaults**:
+
+-   `query-head`: `''`
+-   query-body: `'body > *'`.
+
+Use `query-head` and `query-body` to include specific elements from the source. Elements from `query-head` are appended to the document's `'<head>'`, while elements from `query-body` replace the web component itself.
+
+This allows, for example, to include `<style>` to your main document or to omit certain elements. The following example would add the `<style>`to the main `<head>` and replace the web component with`<p id="include">This will be included.</p>`.
+
+```html
+<include-iframe query-body="body > #include" query-head="style">
+	<iframe src="/query/demo.html"></iframe>
+</include-iframe>
+```
+
+```html
+<head>
+	<style>
+		#include {
+			border-left: 4px solid #333;
+			padding-left: 1em;
+		}
+	</style>
+</head>
+<body>
+	<p id="avoid">This won't be included</p>
+	<p id="include">This will be included.</p>
+</body>
+```
+
+### Slot: `loading`
 
 Use the `loading` slot to display a custom loading state while the iframe content is being loaded.
 
