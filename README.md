@@ -12,7 +12,7 @@
   - [Limitations](#limitations)
   - [Inspiration](#inspiration)
 
-The `<include-iframe>` custom element is a simple way to load content from external HTML files via slotted `<iframe>` elements. It supports showing a loading state while the iframe content is being loaded. Besides being a way for "Client Side Includes", this can be used as a primitive way to offload performance heavy or dynamic content, as e. g. [Astro](https://astro.build/) does it with [Server Islands](https://astro.build/blog/future-of-astro-server-islands/).
+The `<include-iframe>` custom element is a simple way to load content from external HTML files. It injects the content of a slotted `<iframe>` element and replaces itself and the `iframe` afterwards. It supports showing a loading state while the `iframe` content is being loaded. Besides being a way for "Client Side Includes", this can be used as a primitive way to offload performance heavy or dynamic content, as e. g. [Astro](https://astro.build/) does it with [Server Islands](https://astro.build/blog/future-of-astro-server-islands/).
 
 -   [GitHub](https://github.com/mariohamann/include-iframe)
 -   [NPM](https://www.npmjs.com/package/@mariohamann/include-iframe)
@@ -64,7 +64,7 @@ import "@mariohamann/include-iframe";
 
 ### Basic Usage
 
-Use the default slot to include an iframe with the content you want to load. The component will extract the content from the iframe, remove itself and append the content to the parent element.
+Use the default slot to include an `iframe` with the content you want to load. The component will extract the content from the `iframe`, remove itself and append the content to the parent element.
 
 ```html
 <include-iframe>
@@ -72,7 +72,7 @@ Use the default slot to include an iframe with the content you want to load. The
 </include-iframe>
 ```
 
-Using the native iframe element in the LightDOM allows the browser to start loading the content immediately, even before JavaScript is executed. This ensures optimal performance and in addition enables features like [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) by setting `loading="lazy"` on the iframe. And even when JavaScript is disabled, the content of your iframe will be shown.
+Using the native `iframe` element in the LightDOM allows the browser to start loading the content immediately, even before JavaScript is executed. This ensures optimal performance and in addition enables features like [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) by setting `loading="lazy"` on the iframe. And even when JavaScript is disabled, the content of your `iframe` will be shown.
 
 > [!TIP]
 > For improved Progressive Enhancement, include the following CSS, which will hide the iframe when JavaScript is enabled.
